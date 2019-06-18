@@ -10,42 +10,260 @@
   <body>
     <textarea id="source">
 
-
-
 class: center, middle, and title-slide
 background-image: url("images/bg.png")
 background-position: top
 background-size: contain
 
-# **LIMPIDO**&lt;br&gt;**L**earn**I**ng **M**achine for **P**ed**I**atric **D**etection of **O**titis
 
-## **presented @HLP Lab - UPenn**
 
-### **Corrado Lanera**&lt;br&gt;&lt;small&gt;**Ph. D. candidate**: Specialistic medicine ¨G.B. Morgagni¨&lt;br&gt;**Topic**: Development and application of Machine Learning and Phenomapping techniques in Clinical Research&lt;/small&gt;
+# **LIMPIDO**&lt;br&gt;**L**earn**I**ng **M**achine for&lt;br&gt;**P**ed**I**atric **D**etection of **O**titis
+
+### **Corrado Lanera**
+
+### University of Padova&lt;br&gt;&lt;small&gt;Unit of Biostatistics, Epidemiology, and Public Health&lt;br&gt;Department of Cardiac, Thoracic, Vascular Sciences, and Public Health&lt;/small&gt;.
+
+.left[
+  2019/06/20 - HLP Lab @UPenn
+]
 
 &lt;br&gt;
 &lt;br&gt;
 
+.left[
 &lt;small&gt;
-Unit of Biostatistics, Epidemiology, and Public Health&lt;br&gt;Department of Cardiac, Thoracic, Vascular Sciences, and Public Health&lt;br&gt;
-
-University of Padova --- Italy
+**Ph. D. candidate**: Specialistic medicine ¨G.B. Morgagni¨&lt;br&gt;
+**Topic**: Development and application of Machine Learning and Phenomapping techniques in Clinical Research&lt;br&gt;
+**Supervisor**: Prof. Dario Gregori
 &lt;/small&gt;
+]
+
+
 
 ---
+class: center, inverse, middle
 
+# Where I came from?
+
+---
+background-image: url()
+background-size: cover
+
+
+# UBEPH
+
+### MLT in clinical environments
+
+* structured data (AKA _phenomaping_)
+
+--
+* unstructured data
+
+    + Patient kinetic data from wearable devices
+    
+    + Free-Text mining from electronic medical records
+
+---
+class: inverse, middle
 # Outline
 
-
-- Brief personal introduction
-
-- Journey to the problem definition, through the issues encountered
+- Journey to the problem, through the issues encountered
 
 - Choices to be taken
 
 - Flowchart proposal
 
 - Personal expectation from the HLP Lab experience
+---
+
+# PediaNET
+
+
+
+
+
+
+---
+
+# \#1 Varicella Zoster virus (_chickenpox_) detection 
+
+--
+
+- Impact of the preprocessing
+
+
+
+
+
+
+
+---
+
+# \#2 COmprehensive Searches ThroUgh Machine learning for systEmatic Reviews
+
+--
+
+- class imbalance
+
+
+
+
+
+
+
+
+---
+
+# \#3 Automatic classification of free-text diagnoses
+
+--
+
+- multi-source
+- multi-label
+- strong validation
+
+
+
+
+
+
+
+
+---
+
+# \#4 Otitis
+
+- Why it does matter?
+
+--
+
+- multi-label
+- multi-stage
+- time-dependant
+- multi-source
+- unbalanced
+
+
+
+---
+
+# PediNET dataset and structure
+
+- records:
+- patients:
+- variables:
+- (language: italian)
+
+
+
+
+
+
+
+---
+class: center, inverse, middle
+
+# Options
+
+
+---
+
+# Preprocessing
+
+- remove: extra white spaces, non-words, stop-words
+- merge: lowering, stemming/lammatization
+- augment: n-gram
+
+--
+
+- enrich (NLP): tag, pos, sentiment, ...
+
+-- 
+
+- machine-translate: TF-iDF?
+
+
+
+
+
+
+
+--- 
+
+# Data imbalance
+
+type: RUS/ROS
+prop: 35:65, 50:50
+
+
+
+---
+
+# Machine Learning Method
+
+- classical: GLMNet, logistic, ...
+- full-data: SVM, CART, ...
+- boosted: RF, GBM, logitboost, ...
+- deep: CNN, RNN, ...
+- ensembled: SuperLearner
+
+
+
+
+
+---
+
+# ML design
+
+- stages: one, more
+- parameter selection: (repeated) CV, boosting
+- learning curves: useful to select or switch to more complex model
+- validation: data from which distribution?
+- metric: sensitivity, NNP, AUC, ...
+
+
+
+--- 
+# Production
+
+- fixed model
+- active learning
+
+
+
+---
+class: center, inverse, middle
+
+# Actual purposed strategy
+
+
+
+
+
+---
+
+Flow-chart
+
+
+
+
+
+---
+class: center, inverse, middle
+
+# Expectation from the HLP Lab experience
+
+
+
+---
+- opinion on the project steps and strategy
+- NLP suggestion about prproc imporvement
+- management of time-dependant input
+- management of time-dependant output:
+  - within the model (recurrent)
+  - between the classifications (count of events/time) 
+
+- try to give you back my two cents
 
 
 ---
@@ -61,7 +279,7 @@ class: center, middle
 &lt;br&gt;
 &lt;br&gt;
 
-# Thanks!
+# Thanks for the attention
 
 &lt;br&gt;
 &lt;br&gt;

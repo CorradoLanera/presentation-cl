@@ -13,44 +13,262 @@ output:
       highlightLines: true
       countIncrementalSlides: false
 ---
-```{r setup, include=FALSE}
-options(htmltools.dir.version = FALSE)
-```
-
 class: center, middle, and title-slide
 background-image: url("images/bg.png")
 background-position: top
 background-size: contain
 
-# **LIMPIDO**<br>**L**earn**I**ng **M**achine for **P**ed**I**atric **D**etection of **O**titis
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
 
-## **presented @HLP Lab - UPenn**
+# **LIMPIDO**<br>**L**earn**I**ng **M**achine for<br>**P**ed**I**atric **D**etection of **O**titis
 
-### **Corrado Lanera**<br><small>**Ph. D. candidate**: Specialistic medicine ¨G.B. Morgagni¨<br>**Topic**: Development and application of Machine Learning and Phenomapping techniques in Clinical Research</small>
+### **Corrado Lanera**
+
+### University of Padova<br><small>Unit of Biostatistics, Epidemiology, and Public Health<br>Department of Cardiac, Thoracic, Vascular Sciences, and Public Health</small>.
+
+.left[
+  2019/06/20 - HLP Lab @UPenn
+]
 
 <br>
 <br>
 
+.left[
 <small>
-Unit of Biostatistics, Epidemiology, and Public Health<br>Department of Cardiac, Thoracic, Vascular Sciences, and Public Health<br>
-
-University of Padova --- Italy
+**Ph. D. candidate**: Specialistic medicine ¨G.B. Morgagni¨<br>
+**Topic**: Development and application of Machine Learning and Phenomapping techniques in Clinical Research<br>
+**Supervisor**: Prof. Dario Gregori
 </small>
+]
+
+
 
 ---
+class: center, inverse, middle
 
+# Where I came from?
+
+---
+background-image: url()
+background-size: cover
+
+
+# UBEPH
+
+### MLT in clinical environments
+
+* structured data (AKA _phenomaping_)
+
+--
+* unstructured data
+
+    + Patient kinetic data from wearable devices
+    
+    + Free-Text mining from electronic medical records
+
+---
+class: inverse, middle
 # Outline
 
-
-- Brief personal introduction
-
-- Journey to the problem definition, through the issues encountered
+- Journey to the problem, through the issues encountered
 
 - Choices to be taken
 
 - Flowchart proposal
 
 - Personal expectation from the HLP Lab experience
+---
+
+# PediaNET
+
+
+
+
+
+
+---
+
+# \#1 Varicella Zoster virus (_chickenpox_) detection 
+
+--
+
+- Impact of the preprocessing
+
+
+
+
+
+
+
+---
+
+# \#2 COmprehensive Searches ThroUgh Machine learning for systEmatic Reviews
+
+--
+
+- class imbalance
+
+
+
+
+
+
+
+
+---
+
+# \#3 Automatic classification of free-text diagnoses
+
+--
+
+- multi-source
+- multi-label
+- strong validation
+
+
+
+
+
+
+
+
+---
+
+# \#4 Otitis
+
+- Why it does matter?
+
+--
+
+- multi-label
+- multi-stage
+- time-dependant
+- multi-source
+- unbalanced
+
+
+
+---
+
+# PediNET dataset and structure
+
+- records:
+- patients:
+- variables:
+- (language: italian)
+
+
+
+
+
+
+
+---
+class: center, inverse, middle
+
+# Options
+
+
+---
+
+# Preprocessing
+
+- remove: extra white spaces, non-words, stop-words
+- merge: lowering, stemming/lammatization
+- augment: n-gram
+
+--
+
+- enrich (NLP): tag, pos, sentiment, ...
+
+-- 
+
+- machine-translate: TF-iDF?
+
+
+
+
+
+
+
+--- 
+
+# Data imbalance
+
+type: RUS/ROS
+prop: 35:65, 50:50
+
+
+
+---
+
+# Machine Learning Method
+
+- classical: GLMNet, logistic, ...
+- full-data: SVM, CART, ...
+- boosted: RF, GBM, logitboost, ...
+- deep: CNN, RNN, ...
+- ensembled: SuperLearner
+
+
+
+
+
+---
+
+# ML design
+
+- stages: one, more
+- parameter selection: (repeated) CV, boosting
+- learning curves: useful to select or switch to more complex model
+- validation: data from which distribution?
+- metric: sensitivity, NNP, AUC, ...
+
+
+
+--- 
+# Production
+
+- fixed model
+- active learning
+
+
+
+---
+class: center, inverse, middle
+
+# Actual purposed strategy
+
+
+
+
+
+---
+
+Flow-chart
+
+
+
+
+
+---
+class: center, inverse, middle
+
+# Expectation from the HLP Lab experience
+
+
+
+---
+- opinion on the project steps and strategy
+- NLP suggestion about prproc imporvement
+- management of time-dependant input
+- management of time-dependant output:
+  - within the model (recurrent)
+  - between the classifications (count of events/time) 
+
+- try to give you back my two cents
 
 
 ---
@@ -66,7 +284,7 @@ class: center, middle
 <br>
 <br>
 
-# Thanks!
+# Thanks for the attention
 
 <br>
 <br>
