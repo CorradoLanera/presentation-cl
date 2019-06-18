@@ -1,0 +1,28 @@
+Title: LIMPIDO: a LearnIng Machine for PedIatric Detection of Otitis
+
+Abstract:
+Acute otitis media (AOM) is a widespread infectious disease in children, and one of the leading causes of antibiotics prescription.
+
+The PediaNET database is a pediatric general practice research
+database containing reasons for accessing healthcare, health status,
+diagnoses, clinical details, prescriptions and outcome data from more
+than 300 family pediatricians throughout Italy.
+
+During 2018, the Italian PediNET database was investigated by the
+PediaNET team to analyze Acute Otitis Media (AOM) treatments. For the
+analyses, ICD-9 codes and free-text only from the "primary diagnosis"
+field were used. The primary limitation of the study was the
+impossibility of manually validate the cases, possibly including False Positive or detecting cases reported only in the "diary" field.
+
+The objective of the project is to develop a multi-stage machine learning based system to classify PediNET records as not-otitis\otitis,
+media\not-media otitis, acute\not-acute otitis media (AOM), and for the
+AOM if they are recurrent or with perforation.
+
+The talk is focused on the presentation of the previous research
+conducted in the field of text mining electronic health records.
+Also, a tentative flow-chart for the development of the interested model
+will be presented.
+
+The aim is to start a concrete discussion on the possible way of
+collaboration during the visiting period to the HLP Lab at the
+University of Pennsylvania.

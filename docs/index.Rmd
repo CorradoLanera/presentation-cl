@@ -1,5 +1,5 @@
 ---
-title: "**LIMPIDO**<br>**L**earn**I**ng **M**achine for **P**ed**I**atric **D**etection of **O**titis"
+title: "Machine Learning for Pediatric Detection of Otitis"
 subtitle: "**presented @HLP Lab - UPenn**"
 author: "_Corrado Lanera_"
 institute: "Unit of Biostatistics, Epidemiology, and Public Health<br>Department of Cardiac, Thoracic, Vascular Sciences, and Public Health<br>University of Padova (IT)"
@@ -22,17 +22,18 @@ background-size: contain
 options(htmltools.dir.version = FALSE)
 ```
 
-# **LIMPIDO**<br>**L**earn**I**ng **M**achine for<br>**P**ed**I**atric **D**etection of **O**titis
+# Machine Learning<br>for<br>Pediatric Detection of Otitis
 
-### **Corrado Lanera**
+### **Corrado Lanera**<br><small><small><corrado.lanera@unipd.it></small></small>
 
-### University of Padova<br><small>Unit of Biostatistics, Epidemiology, and Public Health<br>Department of Cardiac, Thoracic, Vascular Sciences, and Public Health</small>.
+University of Padova<br><small>Unit of Biostatistics, Epidemiology, and Public Health<br>Department of Cardiac, Thoracic, Vascular Sciences, and Public Health</small>.
+
+<br>
 
 .left[
   2019/06/20 - HLP Lab @UPenn
 ]
 
-<br>
 <br>
 
 .left[
@@ -48,25 +49,29 @@ options(htmltools.dir.version = FALSE)
 ---
 class: center, inverse, middle
 
-# Where I came from?
+# My research at UBEPH
 
 ---
 background-image: url()
 background-size: cover
 
 
-# UBEPH
+# MLT in clinical environments
 
-### MLT in clinical environments
 
-* structured data (AKA _phenomaping_)
+### Structured data (AKA _phenomaping_)
+
+  + medical departments statistical analyses
+  + clustering patterns for genetic counting data
 
 --
-* unstructured data
 
-    + Patient kinetic data from wearable devices
+### Unstructured data
+
+  + Patient kinetic data from wearable devices
     
-    + Free-Text mining from electronic medical records
+  + Free-Text mining from electronic medical records
+
 
 ---
 class: inverse, middle
@@ -74,14 +79,28 @@ class: inverse, middle
 
 - Journey to the problem, through the issues encountered
 
-- Choices to be taken
+- Choices that can be taken
 
-- Flowchart proposal
+- My flow-chart draft proposal
 
 - Personal expectation from the HLP Lab experience
 ---
 
-# PediaNET
+# \#1 PediaNET<sup>*</sup>
+
+_A pediatric general practice research database_
+
+Containing:
+
+- reason for accessing health care
+- health status
+- personal details
+- grouth parameters
+- diagnoses
+- clinical details (**free-text** or ICD-9 code)
+- prescriptions
+
+.footnote[<sup>*</sup>[www.pedianet.it](www.pedianet.it)]
 
 
 
@@ -261,6 +280,8 @@ class: center, inverse, middle
 
 
 ---
+class: middle
+
 - opinion on the project steps and strategy
 - NLP suggestion about prproc imporvement
 - management of time-dependant input

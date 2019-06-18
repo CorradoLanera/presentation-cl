@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
   <head>
-    <title>LIMPIDO LearnIng Machine for PedIatric Detection of Otitis</title>
+    <title>Machine Learning for Pediatric Detection of Otitis</title>
     <meta charset="utf-8" />
     <meta name="author" content="Corrado Lanera" />
     <link href="libs/remark-css/default.css" rel="stylesheet" />
@@ -17,17 +17,18 @@ background-size: contain
 
 
 
-# **LIMPIDO**&lt;br&gt;**L**earn**I**ng **M**achine for&lt;br&gt;**P**ed**I**atric **D**etection of **O**titis
+# Machine Learning&lt;br&gt;for&lt;br&gt;Pediatric Detection of Otitis
 
-### **Corrado Lanera**
+### **Corrado Lanera**&lt;br&gt;&lt;small&gt;&lt;small&gt;&lt;corrado.lanera@unipd.it&gt;&lt;/small&gt;&lt;/small&gt;
 
-### University of Padova&lt;br&gt;&lt;small&gt;Unit of Biostatistics, Epidemiology, and Public Health&lt;br&gt;Department of Cardiac, Thoracic, Vascular Sciences, and Public Health&lt;/small&gt;.
+University of Padova&lt;br&gt;&lt;small&gt;Unit of Biostatistics, Epidemiology, and Public Health&lt;br&gt;Department of Cardiac, Thoracic, Vascular Sciences, and Public Health&lt;/small&gt;.
+
+&lt;br&gt;
 
 .left[
   2019/06/20 - HLP Lab @UPenn
 ]
 
-&lt;br&gt;
 &lt;br&gt;
 
 .left[
@@ -43,25 +44,29 @@ background-size: contain
 ---
 class: center, inverse, middle
 
-# Where I came from?
+# My research at UBEPH
 
 ---
 background-image: url()
 background-size: cover
 
 
-# UBEPH
+# MLT in clinical environments
 
-### MLT in clinical environments
 
-* structured data (AKA _phenomaping_)
+### Structured data (AKA _phenomaping_)
+
+  + medical departments statistical analyses
+  + clustering patterns for genetic counting data
 
 --
-* unstructured data
 
-    + Patient kinetic data from wearable devices
+### Unstructured data
+
+  + Patient kinetic data from wearable devices
     
-    + Free-Text mining from electronic medical records
+  + Free-Text mining from electronic medical records
+
 
 ---
 class: inverse, middle
@@ -69,14 +74,28 @@ class: inverse, middle
 
 - Journey to the problem, through the issues encountered
 
-- Choices to be taken
+- Choices that can be taken
 
-- Flowchart proposal
+- My flow-chart draft proposal
 
 - Personal expectation from the HLP Lab experience
 ---
 
-# PediaNET
+# \#1 PediaNET&lt;sup&gt;*&lt;/sup&gt;
+
+_A pediatric general practice research database_
+
+Containing:
+
+- reason for accessing health care
+- health status
+- personal details
+- grouth parameters
+- diagnoses
+- clinical details (**free-text** or ICD-9 code)
+- prescriptions
+
+.footnote[&lt;sup&gt;*&lt;/sup&gt;[www.pedianet.it](www.pedianet.it)]
 
 
 
@@ -256,6 +275,8 @@ class: center, inverse, middle
 
 
 ---
+class: middle
+
 - opinion on the project steps and strategy
 - NLP suggestion about prproc imporvement
 - management of time-dependant input
