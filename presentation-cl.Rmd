@@ -1,0 +1,43 @@
+---
+title: "Machine Learning Approach for Automatic Identification and Classification of Otitis using Free-Text Notes from Pediatric Electronic Medical Records"
+subtitle: "at **HLP Lab - UPenn**"
+author: "_Corrado Lanera_"
+institute: "Unit of Biostatistics, Epidemiology, and Public Health<br>Department of Cardiac, Thoracic, Vascular Sciences, and Public Health<br>University of Padova (IT)"
+date: "2019/06/20 (updated: `r Sys.Date()`)"
+output:
+  xaringan::moon_reader:
+    seal: false
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+class: center, middle, and title-slide
+background-image: url("images/bg.png")
+background-position: top
+background-size: contain
+
+# **LIMPIDO**<br>**L**earn**I**ng **M**achine for **P**ed**I**atric **D**etection of **O**titis
+
+## **@HLP Lab - UPenn**
+
+### **Corrado Lanera**<br><small>**Ph. D. candidate**: Specialistic medicine ¨G.B. Morgagni¨<br>**Topic**: Development and application of Machine Learning and Phenomapping techniques in Clinical Research</small>
+
+<br>
+<br>
+
+<small>
+Unit of Biostatistics, Epidemiology, and Public Health<br>Department of Cardiac, Thoracic, Vascular Sciences, and Public Health<br>
+
+University of Padova --- Italy
+</small>
+
+---
+
+class: center, middle
+
+# Thanks!
+
+Slides created via the R package [**xaringan**](https://github.com/yihui/xaringan)<br>powered by [remark.js](https://remarkjs.com), [**knitr**](http://yihui.name/knitr), and [R Markdown](https://rmarkdown.rstudio.com).
