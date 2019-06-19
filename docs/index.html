@@ -116,12 +116,16 @@ _A pediatric general practice research database_
 
 ---
 name: varicella-placeholder
-# \#1 Varicella Zoster (_chickenpox_) detection
+# \#1 Varicella Zoster (_chickenpox_) detection&lt;sup&gt;*&lt;/sup&gt;
 
-#### Our first use of automatic technique to explore PediNET free-text notes
+#### Automatic classification of (a subset of) PediNET free-text notes
 
 .pull-left[
-&lt;img src="images/Fig1.png", width="90%"&gt;
+&lt;img src="images/Fig1.png", width="78%"&gt;
+
+&lt;small&gt;&lt;small&gt;
+&lt;sup&gt;*&lt;/sup&gt;L., Berchialla, Baldi, et.al, _JMIR_ [under review]
+&lt;/small&gt;&lt;/small&gt;
 ]
 
 .pull-right[
@@ -139,13 +143,13 @@ name: varicella-placeholder
 
 ---
 template: varicella-placeholder
-**Learners**&lt;sup&gt;*&lt;/sup&gt;
+**Learners**&lt;sup&gt;**&lt;/sup&gt;
 
  - LogitBoost (F: 68.5 [59.3–77.7])
  - GLMNet (F: 36.5 [32.2–40.8]) 
  - Multinomial Logistic (F: 19.1 [17.2–20.9])
 
-&lt;small&gt;&lt;sup&gt;*&lt;/sup&gt; F-score (armonic mean of precision and recall) on the test set.&lt;/small&gt;
+&lt;small&gt;&lt;sup&gt;**&lt;/sup&gt; F-score (armonic mean of precision and recall) on the test set.&lt;/small&gt;
 ---
 class: middle, inverse
 
@@ -153,6 +157,7 @@ class: middle, inverse
   - Always test on unseen data
   - Impact of the preprocessing
   - Value of boostrap
+  - Sigle occurrence in a life-time (time-independent)
 
 ---
 background-image: url("images/fig3.png")
@@ -163,7 +168,7 @@ background-size: contain
 #### The problem of class imbalance
 
 .footnote[
-&lt;sup&gt;*&lt;/sup&gt; Lanera, et.al (2018) "Extending PubMed searches to ClinicalTrials.gov through a machine learning approach for systematic reviews", JCE (103)
+&lt;sup&gt;*&lt;/sup&gt; L., Minto, Sharma, et.al _JCE_ (2018-103)
 ]
 ---
 
@@ -255,7 +260,7 @@ class: middle, inverse
 ---
 layout: false
 
-# \#3 Diagnoses classification for children
+# \#3 Diagnoses classification for children&lt;sup&gt;*&lt;/sup&gt;
 
 .pull-left[
 &lt;img src="images/nica.png", width="90%"&gt;
@@ -276,6 +281,8 @@ peer-review group of expert pediatricians
 **Results**
 - overall accuracy: 0.7831 [0.7792-0.7965]
 ]
+
+&lt;small&gt;&lt;sup&gt;*&lt;/sup&gt;Lorenzoni, Bressan, L., et.al. _MCRR_ (04/2019)&lt;/small&gt;
 
 ---
 class: middle, inverse
@@ -328,30 +335,32 @@ class: center, inverse, middle
 
 
 ---
-
 # Preprocessing
 
 - remove: extra white spaces, non-words, stop-words
 - merge: lowering, stemming/lammatization
 - augment: n-gram
 
+
 --
+
 
 - enrich (NLP): tag, pos, sentiment, ...
 
+
 -- 
 
+
+
 - machine-translate: TF-iDF?
-
-
-
 
 --- 
 
 # Data imbalance
 
-type: RUS/ROS
-prop: 35:65, 50:50
+- type: RUS/ROS
+
+- prop: 35:65, 50:50
 
 
 
