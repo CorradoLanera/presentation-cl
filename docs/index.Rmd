@@ -1,5 +1,5 @@
 ---
-title: "Machine Learning for Pediatric Detection of Otitis"
+title: "Machine Learning for Detection of Pediatric Otitis"
 subtitle: "**presented @HLP Lab - UPenn**"
 author: "_Corrado Lanera_"
 institute: "Unit of Biostatistics, Epidemiology, and Public Health<br>Department of Cardiac, Thoracic, Vascular Sciences, and Public Health<br>University of Padova (IT)"
@@ -22,7 +22,7 @@ background-size: contain
 options(htmltools.dir.version = FALSE)
 ```
 
-# Machine Learning<br>for<br>Pediatric Detection of Otitis
+# Machine Learning<br>for<br>Detection of Pediatric Otitis
 
 ### **Corrado Lanera**<br><small><small><corrado.lanera@unipd.it></small></small>
 
@@ -52,19 +52,19 @@ class: center, inverse, middle
 # My research at UBEPH
 
 ---
-background-image: url()
-background-size: cover
-
 
 # MLT in clinical environments
 
 
 ### Structured data (AKA _phenomaping_)
 
-  + medical departments statistical analyses
+  + statistical analyses for clinical research
+
   + clustering patterns for genetic counting data
 
+
 --
+
 
 ### Unstructured data
 
@@ -74,92 +74,244 @@ background-size: cover
 
 
 ---
+name: section
 class: inverse, middle
+
 # Outline
 
-- Journey to the problem, through the issues encountered
+- Journey to the current problem, through the experience done
+
+--
 
 - Choices that can be taken
 
+--
+
 - My flow-chart draft proposal
 
+--
+
 - Personal expectation from the HLP Lab experience
+
+
 ---
 
 # \#1 PediaNET<sup>*</sup>
 
 _A pediatric general practice research database_
 
-Containing:
+#### more then 300 family pediatricians distributed throughout Italy
+#### near 100,000 children followed by
 
 - reason for accessing health care
 - health status
 - personal details
-- grouth parameters
+- growth parameters
 - diagnoses
 - clinical details (**free-text** or ICD-9 code)
-- prescriptions
+- prescriptions,
+- specialistic appointment
+- diagnoses procedures
+- hospital admissions
+- outcome data
 
 .footnote[<sup>*</sup>[www.pedianet.it](www.pedianet.it)]
 
 
 
+---
+name: varicella-placeholder
+# \#1 Varicella Zoster (_chickenpox_) detection
+
+#### Our first use of automatic technique to explore PediNET free-text notes
+
+.pull-left[
+<img src="images/Fig1.png", width="90%">
+]
+
+.pull-right[
+- **train and validation**
+  - region: Veneto (IT)
+  - patients: 7,631
+  - records: 1,230,355
+- **test**
+  - region: Sicilia (IT):
+  - patients: 2,347
+  - records: 569,926 
+
+{{content}}
+]
+
+---
+template: varicella-placeholder
+**Learners**<sup>*</sup>
+
+ - LogitBoost (F: 68.5 [59.3–77.7])
+ - GLMNet (F: 36.5 [32.2–40.8]) 
+ - Multinomial Logistic (F: 19.1 [17.2–20.9])
+
+<small><sup>*</sup> F-score (armonic mean of precision and recall) on the test set.</small>
+---
+class: middle, inverse
+
+# Lessons learned
+  - Always test on unseen data
+  - Impact of the preprocessing
+  - Value of boostrap
+
+---
+background-image: url("images/fig3.png")
+background-position: center
+background-size: contain
+# \#2 _Digression on Systematic Reviews_<sup>*</sup>
+
+#### The problem of class imbalance
+
+.footnote[
+<sup>*</sup> Lanera, et.al (2018) "Extending PubMed searches to ClinicalTrials.gov through a machine learning approach for systematic reviews", JCE (103)
+]
+---
+
+# \#2 _Digression on Systematic Reviews_
+
+#### The problem of class imbalance
+
+**Assumption**:
+The validity of Systematic Reviews depends on the ability to fully capture the complete body of evidence through searches of many and heterogeneous data sources.
+
+--
+
+<small>_Baudard et al. (2017) “**Impact of Searching Clinical Trial Registries in Systematic Reviews of Pharmaceutical Treatments: Methodological Systematic Review and Reanalysis of Meta-Analyses.**” Bmj 356_</small>
+
+- Increase in the number of patients: **from 10% to 50%**
+- Change in summary statistics: **from 0% to 29%**
+
+--
+
+**Our aim**: replacing complex interfaces for researchers with Text Mining of available textual fields in clinical registries
+
+--
+
+**Main issue**: MLTs are generally biased towards the majority class samples
+
+
+---
+# \#2 _Digression on Systematic Reviews_
+
+#### The problem of class imbalance
+
+.pull-left[
+**Data**<sup>*</sup>
+- 14 Systematic Reviews
+- **train** (from PubMed, overall):
+  - 72,000 negative
+  - 185 positive
+- **test**:
+  - 233,609 (from ct.gov)
+
+<small>
+  <sup>*</sup> Baudard et al. (2017)
+</small>
+
+**Learners**
+  - GLMNet 
+  - SVM
+  - RF
+  - kNN
+
+]
+
+--
+
+.pull-right[
+**Strategies**<sup>**</sup>
+
+- Random Under Sampling
+- Random Over Sampling
+
+
+- 35:65 minority:majority ratio
+- 50:50 minority:majority ratio
+
+<small>
+  <sup>**</sup> compared with the straight use of full dataset
+</small>
+
+**Results**<sup>\*\*\*</sup>
+  - improve: RUS-35:65, ROS-50:50
+  - worsen: kNN (all strategies)
+  - almost neutral: SVM
+    - (RUS-50:50 worsened it)
+    
+]
+
+
+  
+<small><sup>\*\*\* Based on $\Delta$AUC respect to the application on the full dataset w/out dealing with class imbalance</sup></small>
+---
+class: middle, inverse
+
+# Lesson learned
+  - Is not a good idea using class imbalance strategies w/ kNN
+  - RUS 35:65 can be effective to reduce time and gain AUC
+  - SVM could be the first choice for a fast and performing MLT
+
+
+---
+layout: false
+
+# \#3 Diagnoses classification for children
+
+.pull-left[
+<img src="images/nica.png", width="90%">
+]
+
+.pull-rigth[
+**Data**
+  - 1789 ED visits with reported discharge diagnoses (Free-Text) from 9 Nicaraguan hospitals
+  - diagnoses were manually revised and classified by an independent
+peer-review group of expert pediatricians
+
+**Learning strategy**
+- bootstrap samples: distribution of results
+- repeated CV: overfitting controll
+- OOB performance: full use of data
+- RF: 500 trees each (enought to converge)
+
+**Results**
+- overall accuracy: 0.7831 [0.7792-0.7965]
+]
+
+---
+class: middle, inverse
+
+# Leasons learned
+  - Use of lemmata instead of stemming
+  - Needs of strong internal validation
+
+
+
+
+
 
 
 
 ---
-
-# \#1 Varicella Zoster virus (_chickenpox_) detection 
-
---
-
-- Impact of the preprocessing
-
-
-
-
-
-
+class: center, middle
+# Detection and Classification of Otitis from free-text notes into the PediaNET database
 
 ---
 
-# \#2 COmprehensive Searches ThroUgh Machine learning for systEmatic Reviews
+#### Data
 
---
+- records:
+- patients:
+- variables:
+- (language: italian)
 
-- class imbalance
+#### Requests:
 
-
-
-
-
-
-
-
----
-
-# \#3 Automatic classification of free-text diagnoses
-
---
-
-- multi-source
-- multi-label
-- strong validation
-
-
-
-
-
-
-
-
----
-
-# \#4 Otitis
-
-- Why it does matter?
-
---
+#### Challenges:
 
 - multi-label
 - multi-stage
@@ -167,16 +319,6 @@ Containing:
 - multi-source
 - unbalanced
 
-
-
----
-
-# PediNET dataset and structure
-
-- records:
-- patients:
-- variables:
-- (language: italian)
 
 
 
@@ -209,9 +351,6 @@ class: center, inverse, middle
 
 
 
-
-
-
 --- 
 
 # Data imbalance
@@ -240,7 +379,7 @@ prop: 35:65, 50:50
 # ML design
 
 - stages: one, more
-- parameter selection: (repeated) CV, boosting
+- parameter selection: (repeated) CV, boostrap
 - learning curves: useful to select or switch to more complex model
 - validation: data from which distribution?
 - metric: sensitivity, NNP, AUC, ...
@@ -258,7 +397,7 @@ prop: 35:65, 50:50
 ---
 class: center, inverse, middle
 
-# Actual purposed strategy
+# Current purposed strategy
 
 
 
@@ -283,9 +422,9 @@ class: center, inverse, middle
 class: middle
 
 - opinion on the project steps and strategy
-- NLP suggestion about prproc imporvement
-- management of time-dependant input
-- management of time-dependant output:
+- NLP suggestion about preproc imporvement
+- management of time-dependent input
+- management of time-dependent output:
   - within the model (recurrent)
   - between the classifications (count of events/time) 
 
