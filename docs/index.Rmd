@@ -79,17 +79,24 @@ class: inverse, middle
 
 - A brief history of PediaNET
 
-- Experiences of UBEPH on health-related free-text analyses
+- Experiences at UBEPH on health-related free-text analyses
   1. case detection of Varicella Zoster Virus infections in Italian children
   1. extend systematic review searches from literature to registries
   1. classification of pediatric emergency department discharging notes
 
 - The otitis project
-  1. aim
+  1. aim 
   1. data
   1. challenges
-  1. tentative flow-chart
 
+- Machine learning strategy (draft)
+  1. global flow-chart
+  1. preprocessing
+  1. feature definition and weigths
+  1. class imbalance?
+  1. training flow
+
+- Discussion
 
 ---
 
@@ -105,7 +112,10 @@ A pediatric general practice research database
 
 <small><sup>*</sup>[http://pedianet.it/en/general-design](http://pedianet.it/en/general-design)</small>
 
+---
+class: center, middle, inverse
 
+# Experiences at UBEPH
 
 ---
 # \#1 Varicella Zoster (_chickenpox_) detection
@@ -155,7 +165,7 @@ class: middle, inverse
 # \#2 Extend Systematic Review to registries
 
 **Assumption**:
-The validity of Systematic Reviews depends on the ability to fully capture the complete body of evidence through searches of many and heterogeneous data sources.
+The validity of Systematic Reviews depends on the ability to fully capture the complete body of evidence through searches of many heterogeneous data sources.
 
 <small>_Baudard et al. (2017) “**Impact of Searching Clinical Trial Registries in Systematic Reviews of Pharmaceutical Treatments: Methodological Systematic Review and Reanalysis of Meta-Analyses.**” Bmj 356_</small>
 
@@ -312,21 +322,25 @@ class: middle, inverse
 
 
 ---
-class: center, middle
-# Detection and Classification of Otitis from free-text notes into the PediaNET database
+class: center, middle, inverse
+# Detection and Classification of Otitis from PediaNET free-text medical notes
 
 ---
 
-#### Data
+# #1 Aim
+
+---
+
+# #2 Data
 
 - records:
 - patients:
 - variables:
 - (language: italian)
 
-#### Requests:
+---
 
-#### Challenges:
+# #3 Challenges
 
 - multi-label
 - multi-stage
@@ -336,50 +350,38 @@ class: center, middle
 
 
 
+---
+class: center, middle, inverse
 
-
-
-
+# ML strategy (draft)
 
 ---
-class: center, inverse, middle
 
-# Options
-
+# Global flow-chart
 
 ---
+
 # Preprocessing
-
 - remove: extra white spaces, non-words, stop-words
 - merge: lowering, stemming/lammatization
 - augment: n-gram
 
+---
 
---
-
-
+# Feature definition and weigths
 - enrich (NLP): tag, pos, sentiment, ...
+- TF-iDF
+---
 
-
--- 
-
-
-
-- machine-translate: TF-iDF?
-
---- 
-
-# Data imbalance
+# Class imbalance?
 
 - type: RUS/ROS
 
 - prop: 35:65, 50:50
 
-
-
 ---
 
-# Machine Learning Method
+# Training flow
 
 - classical: GLMNet, logistic, ...
 - full-data: SVM, CART, ...
@@ -387,65 +389,18 @@ class: center, inverse, middle
 - deep: CNN, RNN, ...
 - ensembled: SuperLearner
 
-
-
-
-
----
-
-# ML design
-
 - stages: one, more
 - parameter selection: (repeated) CV, boostrap
 - learning curves: useful to select or switch to more complex model
 - validation: data from which distribution?
-- metric: sensitivity, NNP, AUC, ...
+- metric: sensitivity, NNP, AUC
 
 
-
---- 
+---
 # Production
 
 - fixed model
 - active learning
-
-
-
----
-class: center, inverse, middle
-
-# Current purposed strategy
-
-
-
-
-
----
-
-Flow-chart
-
-
-
-
-
----
-class: center, inverse, middle
-
-# Expectation from the HLP Lab experience
-
-
-
----
-class: middle
-
-- opinion on the project steps and strategy
-- NLP suggestion about preproc imporvement
-- management of time-dependent input
-- management of time-dependent output:
-  - within the model (recurrent)
-  - between the classifications (count of events/time) 
-
-- try to give you back my two cents
 
 
 ---
@@ -461,7 +416,8 @@ class: center, middle
 <br>
 <br>
 
-# Thanks for the attention
+# Thank you for your attention
+
 
 <br>
 <br>
