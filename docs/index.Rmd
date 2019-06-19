@@ -57,7 +57,7 @@ class: center, inverse, middle
 # MLT in clinical environments
 
 
-### Structured data (AKA _phenomaping_)
+### Structured data (AKA _phenomapping_)
 
   + Statistical analyses for clinical research
 
@@ -85,7 +85,7 @@ class: inverse, middle
   1. classification of pediatric emergency department discharging notes
 
 - The otitis project
-  1. aim 
+  1. task
   1. data
   1. challenges
 
@@ -99,18 +99,36 @@ class: inverse, middle
 - Discussion
 
 ---
+background-image: url("images/pedianet.png")
+background-position: bottom
+background-size: 90% 60%
 
 # PediaNET
 
 A pediatric general practice research database
 
-#### Network of more then 450 family pediatricians distributed throughout Italy (120-130 providing data)
-#### Near 100,000 children followed by
+- Network of more then 450 family pediatricians distributed throughout Italy (120-130 providing data)
+
+- Near 100,000 children followed by
 
 
-<img src="images/pedianet.png">
-
-<small><sup>*</sup>[http://pedianet.it/en/general-design](http://pedianet.it/en/general-design)</small>
+<!-- <img src="images/pedianet.png"> -->
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div align="right"><small>
+[http://pedianet.it/en/general-design](http://pedianet.it/en/general-design)
+</small><div align="right">
 
 ---
 class: center, middle, inverse
@@ -191,9 +209,9 @@ The validity of Systematic Reviews depends on the ability to fully capture the c
 - **Test**:
   - 233,609 (from ct.gov)
 
-<small>
+<small><small>
   <sup>1</sup> Baudard et al. (2017)
-</small>
+</small></small>
 
 **Learners**
   - GLMNet 
@@ -213,9 +231,9 @@ The validity of Systematic Reviews depends on the ability to fully capture the c
 - 35:65 minority:majority ratio
 - 50:50 minority:majority ratio
 
-<small>
+<small><small>
   <sup>2</sup> Compared with the straight use of full dataset
-</small>
+</small></small>
 
 **Results**<sup>3</sup>
   - Improve: RUS-35:65, ROS-50:50
@@ -327,7 +345,24 @@ class: center, middle, inverse
 
 ---
 
-# #1 Aim
+# #1 Task
+
+> Detection of cases of otitis in children from free-text notes only.
+> Record level.
+
+> Classify patient records into the following hierarchies (only):
+  - not an otitis case (label = 0)
+  - otitis not media (label = 1)
+      - media not acute (label = 2)
+        - acute not recurrent and without perforation (label = 3)
+          - acute with perforation (label = 4)
+          - acute recurrent (label = 5)
+          
+### Notes:
+- label 4 and 5 can cohesists 
+- label 5 is time-dependent: three OMA events within 6 months, or 4+ OMA events in 12 months.
+- label 5: if the pediatrician explicitely reports that OMA is recurrent, the record has to be marked as well despite of the timing.
+
 
 ---
 
@@ -397,7 +432,7 @@ class: center, middle, inverse
 
 
 ---
-# Production
+# (Production?)
 
 - fixed model
 - active learning
