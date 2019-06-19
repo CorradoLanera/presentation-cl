@@ -8,6 +8,7 @@ output:
   xaringan::moon_reader:
     seal: false
     lib_dir: libs
+    self_contained: false
     nature:
       highlightStyle: github
       highlightLines: true
@@ -58,12 +59,10 @@ class: center, inverse, middle
 
 ### Structured data (AKA _phenomaping_)
 
-  + statistical analyses for clinical research
+  + Statistical analyses for clinical research
 
-  + clustering patterns for genetic counting data
+  + Clustering patterns for genetic counting data
 
-
---
 
 
 ### Unstructured data
@@ -74,59 +73,45 @@ class: center, inverse, middle
 
 
 ---
-name: section
 class: inverse, middle
 
 # Outline
 
-- Journey to the current problem, through the experience done
+- A brief history of PediaNET
 
---
+- Experiences of UBEPH on health-related free-text analyses
+  1. case detection of Varicella Zoster Virus infections in Italian children
+  1. extend systematic review searches from literature to registries
+  1. classification of pediatric emergency department discharging notes
 
-- Choices that can be taken
-
---
-
-- My flow-chart draft proposal
-
---
-
-- Personal expectation from the HLP Lab experience
+- The otitis project
+  1. aim
+  1. data
+  1. challenges
+  1. tentative flow-chart
 
 
 ---
 
-# \#1 PediaNET<sup>*</sup>
+# PediaNET
 
-_A pediatric general practice research database_
+A pediatric general practice research database
 
-#### more then 300 family pediatricians distributed throughout Italy
-#### near 100,000 children followed by
+#### Network of more then 450 family pediatricians distributed throughout Italy (120-130 providing data)
+#### Near 100,000 children followed by
 
-- reason for accessing health care
-- health status
-- personal details
-- growth parameters
-- diagnoses
-- clinical details (**free-text** or ICD-9 code)
-- prescriptions,
-- specialistic appointment
-- diagnoses procedures
-- hospital admissions
-- outcome data
 
-.footnote[<sup>*</sup>[www.pedianet.it](www.pedianet.it)]
+<img src="images/pedianet.png">
+
+<small><sup>*</sup>[http://pedianet.it/en/general-design](http://pedianet.it/en/general-design)</small>
 
 
 
 ---
-name: varicella-placeholder
-# \#1 Varicella Zoster (_chickenpox_) detection<sup>*</sup>
-
-#### Automatic classification of (a subset of) PediNET free-text notes
+# \#1 Varicella Zoster (_chickenpox_) detection
 
 .pull-left[
-<img src="images/Fig1.png", width="78%">
+<img src="images/Fig1.png", width="90%">
 
 <small><small>
 <sup>*</sup>L., Berchialla, Baldi, et.al, _JMIR_ [under review]
@@ -134,102 +119,82 @@ name: varicella-placeholder
 ]
 
 .pull-right[
-- **train and validation**
+- **Train and validation**
   - region: Veneto (IT)
   - patients: 7,631
   - records: 1,230,355
-- **test**
+- **Test**
   - region: Sicilia (IT):
   - patients: 2,347
   - records: 569,926 
 
-{{content}}
+- **Learners**
+
+  - LogitBoost (F: 68.5 [59.3–77.7])<sup>**</sup>
+  - GLMNet (F: 36.5 [32.2–40.8]) 
+  - Maxent (F: 19.1 [17.2–20.9])
+
+<small><sup>**</sup> On the test set.</small>
 ]
 
----
-template: varicella-placeholder
-**Learners**<sup>**</sup>
+???
 
- - LogitBoost (F: 68.5 [59.3–77.7])
- - GLMNet (F: 36.5 [32.2–40.8]) 
- - Multinomial Logistic (F: 19.1 [17.2–20.9])
+SOAP = subjective, objective, assessment, and plan
 
-<small><sup>**</sup> F-score (armonic mean of precision and recall) on the test set.</small>
 ---
 class: middle, inverse
 
-# Lessons learned
-  - Always test on unseen data
-  - Impact of the preprocessing
-  - Value of boostrap
+# #1 insights 
   - Sigle occurrence in a life-time (time-independent)
+  - Always test on unseen data in the training set
+  - Impact of the preprocessing (most impact from lowering and 2-gram)
+  - Value of boostrap-based learner
 
 ---
-background-image: url("images/fig3.png")
-background-position: center
-background-size: contain
-# \#2 _Digression on Systematic Reviews_<sup>*</sup>
 
-#### The problem of class imbalance
-
-.footnote[
-<sup>*</sup> L., Minto, Sharma, et.al _JCE_ (2018-103)
-]
----
-
-# \#2 _Digression on Systematic Reviews_
-
-#### The problem of class imbalance
+# \#2 Extend Systematic Review to registries
 
 **Assumption**:
 The validity of Systematic Reviews depends on the ability to fully capture the complete body of evidence through searches of many and heterogeneous data sources.
-
---
 
 <small>_Baudard et al. (2017) “**Impact of Searching Clinical Trial Registries in Systematic Reviews of Pharmaceutical Treatments: Methodological Systematic Review and Reanalysis of Meta-Analyses.**” Bmj 356_</small>
 
 - Increase in the number of patients: **from 10% to 50%**
 - Change in summary statistics: **from 0% to 29%**
 
---
-
 **Our aim**: replacing complex interfaces for researchers with Text Mining of available textual fields in clinical registries
 
---
 
-**Main issue**: MLTs are generally biased towards the majority class samples
+**Main issue**:
+> MLTs are generally biased towards the majority class samples
 
 
 ---
-# \#2 _Digression on Systematic Reviews_
-
-#### The problem of class imbalance
+# \#2 Extend Systematic Review to registries
 
 .pull-left[
-**Data**<sup>*</sup>
+**Data**<sup>1</sup>
 - 14 Systematic Reviews
-- **train** (from PubMed, overall):
+- **Train** (from PubMed, overall):
   - 72,000 negative
   - 185 positive
-- **test**:
+- **Test**:
   - 233,609 (from ct.gov)
 
 <small>
-  <sup>*</sup> Baudard et al. (2017)
+  <sup>1</sup> Baudard et al. (2017)
 </small>
 
 **Learners**
   - GLMNet 
   - SVM
   - RF
-  - kNN
+  - $k$-NN
 
 ]
 
---
-
 .pull-right[
-**Strategies**<sup>**</sup>
+**Strategies**<sup>2</sup>
 
 - Random Under Sampling
 - Random Over Sampling
@@ -239,62 +204,105 @@ The validity of Systematic Reviews depends on the ability to fully capture the c
 - 50:50 minority:majority ratio
 
 <small>
-  <sup>**</sup> compared with the straight use of full dataset
+  <sup>2</sup> Compared with the straight use of full dataset
 </small>
 
-**Results**<sup>\*\*\*</sup>
-  - improve: RUS-35:65, ROS-50:50
-  - worsen: kNN (all strategies)
-  - almost neutral: SVM
+**Results**<sup>3</sup>
+  - Improve: RUS-35:65, ROS-50:50
+  - Worsen: kNN (all strategies)
+  - Almost neutral: SVM
     - (RUS-50:50 worsened it)
     
 ]
 
 
   
-<small><sup>\*\*\* Based on $\Delta$AUC respect to the application on the full dataset w/out dealing with class imbalance</sup></small>
+<small><small>
+<sup>3</sup> Based on $\Delta$AUC respect to the application on the full dataset w/out dealing with class imbalance
+</small></small>
+
+---
+background-image: url("images/fig3.png")
+background-position: top
+background-size: 95% 90%
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<small><small>
+<sup>*</sup> L., Minto, Sharma, et.al _JCE_ (2018-103)
+</small></small>
+
+
 ---
 class: middle, inverse
 
-# Lesson learned
-  - Is not a good idea using class imbalance strategies w/ kNN
-  - RUS 35:65 can be effective to reduce time and gain AUC
+# Insights #2
   - SVM could be the first choice for a fast and performing MLT
+  - RUS 35:65 can be effective to reduce time (and space) gaining AUC
+  - Class imbalance strategies drastically worsen $k$-NN models
 
 
 ---
 layout: false
 
-# \#3 Diagnoses classification for children<sup>*</sup>
+# \#3 Diagnoses classification for children
 
 .pull-left[
 <img src="images/nica.png", width="90%">
+<small><small>
+<sup>*</sup>Lorenzoni, Bressan, L., et.al. _MCRR_ (04/2019)
+</small></small>
 ]
 
 .pull-rigth[
 **Data**
   - 1789 ED visits with reported discharge diagnoses (Free-Text) from 9 Nicaraguan hospitals
-  - diagnoses were manually revised and classified by an independent
+  - Diagnoses were manually revised and classified by an independent
 peer-review group of expert pediatricians
 
 **Learning strategy**
-- bootstrap samples: distribution of results
-- repeated CV: overfitting controll
+- Bootstrap samples: distribution of results
+- Repeated CV: overfitting controll
 - OOB performance: full use of data
-- RF: 500 trees each (enought to converge)
+- RF: 500 trees each forest (to convergence)
 
 **Results**
 - overall accuracy: 0.7831 [0.7792-0.7965]
 ]
-
-<small><sup>*</sup>Lorenzoni, Bressan, L., et.al. _MCRR_ (04/2019)</small>
-
 ---
 class: middle, inverse
 
-# Leasons learned
-  - Use of lemmata instead of stemming
-  - Needs of strong internal validation
+# Insights #3
+  - Lemmata (instead of stemming) improve results and interpretation
+  - Value of a bootstrap superstructure
+    - strong internal validation
+    - data-driven, non-parametric confidence intervals
+    - complete use of all the labelled data at the disposal
 
 
 
