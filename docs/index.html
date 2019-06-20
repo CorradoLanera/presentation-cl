@@ -78,8 +78,8 @@ Experiences at UBEPH on health-related free-text analyses
   1. Classification of pediatric emergency department discharging notes
 
 The otitis project
-  1. Task
   1. Data
+  1. Task
   1. Challenges
 
 Machine learning strategy proposal
@@ -183,10 +183,13 @@ The validity of Systematic Reviews depends on the ability to fully capture the c
 
 **Our aim**: to replace complex interfaces for researchers with Text Mining of available textual fields in clinical registries
 
+**Our results**
+ - sensitivity: 100% in all SRs except one (87.5%)
+ - specificity: ranged from 97.2% to 99.9%
+ - ROC: from 93.4% to 99.9%.
 
-**Main issue**:
+**Main issue**
 &gt; MLTs are generally biased towards the majority class samples
-
 
 ---
 # \#2 Extend Systematic Review to registries
@@ -335,24 +338,6 @@ class: center, middle, inverse
 
 ---
 
-# #1 Task
-
-#### Classification of patients' records into six hierarchical classes
-  - 0 = not an otitis case
-  - 1 = otitis case, not media
-      - 2 = otitis media (OM), not acute
-        - 3 = acute otitis media (AOM), not recurrent nor with perforation
-          - 4 = AOM with perforation
-          - 5 = AOM recurrent
-          
-### Notes:
-- Label 4 and label 5 can coexist 
-- Label 5 is time-dependent: three OMA events within six months or 4+ OMA events in 12 months
-- Label 5: if the pediatrician explicitly reports that OMA is recurrent, the record has to be marked as well despite the timing
-
-
----
-
 # #2 Data
 
 During 2018, &lt;img src="images/logopedianet.png", width = "20%", align = "center"&gt; team search the DB for AOM treatments.
@@ -366,7 +351,7 @@ The primary limitation of the study was the impossibility of manually validate t
 For the current project, they have provided us an extraction of the DB after the same search string filtering, on all diagnoses, sign-and-symptoms, and diaries free-text fields. Whatever excluded should be considered labeled 0 (non-otitis).
 
 ---
-# #2 Data
+# #1 Data
 
 .pull-left[
 - **Textual** variables&lt;sup&gt;1&lt;/sup&gt;
@@ -398,6 +383,26 @@ For the current project, they have provided us an extraction of the DB after the
 ]
 
 .footnote[&lt;small&gt;&lt;small&gt;&lt;sup&gt;1&lt;/sup&gt; Italian language.&lt;/small&gt;&lt;/small&gt;]
+
+
+---
+
+# #2 Task
+
+#### Classification of patients' records into six hierarchical classes
+  - 0 = not an otitis case (i.e., false-positive on the search-string filter)
+  - 1 = otitis case, not media
+      - 2 = otitis media (OM), not acute
+        - 3 = acute otitis media (AOM), not recurrent nor with perforation
+          - 4 = AOM with perforation
+          - 5 = AOM recurrent
+          
+### Notes:
+- Label 4 and label 5 can coexist 
+- Label 5 is time-dependent: three OMA events within six months or 4+ OMA events in 12 months
+- Label 5: if the pediatrician explicitly reports that OMA is recurrent, the record has to be marked as well despite the timing
+
+
 
 ---
 
