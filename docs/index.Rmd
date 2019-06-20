@@ -317,7 +317,7 @@ peer-review group of expert pediatricians
 - RF: 500 trees each forest (to convergence)
 
 **Results**
-- overall accuracy: 0.7831 [0.7792-0.7965]
+- Overall accuracy: 0.7831 [0.7792-0.7965]
 
 ---
 class: middle, inverse
