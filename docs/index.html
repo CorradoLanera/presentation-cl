@@ -68,27 +68,27 @@ class: center, inverse, middle
 
 ---
 class: inverse, middle
-
 # Outline
 
-- A brief history of &lt;img src="images/logopedianet.png", width = "20%", align = "center"&gt;
+A brief introduction to &lt;img src="images/logopedianet.png", width = "20%", align = "center"&gt;
 
-- Experiences at UBEPH on health-related free-text analyses
+Experiences at UBEPH on health-related free-text analyses
   1. case detection of Varicella Zoster Virus infections in Italian children
   1. extend systematic review searches from literature to registries
   1. classification of pediatric emergency department discharging notes
 
-- The otitis project
+The otitis project
   1. task
   1. data
   1. challenges
 
-- Machine learning strategy 
-  1. flow-chart
+Machine learning strategy 
   1. pre-processing
   1. weights and features definition/selection
   1. class imbalance and learning algorithms
   1. training flow
+  1. test
+  1. performance evaluation
 
 ---
 background-image: url("images/pedianet.png")
@@ -419,18 +419,10 @@ class: center, middle, inverse
 
 # Machine learning strategy
 
----
-
-# Global flow-chart
-
-# .center[&lt;mark&gt;???BOIA IL FLOW-CHART???&lt;/mark&gt;]
-# .center[&lt;mark&gt;???SAREBBE CARINO???&lt;/mark&gt;]
-# .center[&lt;mark&gt;???LO AVREI ANCHE PROMESSO???&lt;/mark&gt;]
-# .center[&lt;mark&gt;???METTO STA SEZIONE???&lt;/mark&gt;]
 
 ---
 
-# Pre-processing
+# #1 Pre-processing
 
 - **Removing**:
   - extra white spaces
@@ -443,7 +435,7 @@ class: center, middle, inverse
 
 ---
 
-# Weights and features definition/selection
+# #2 Weights and features def./sel.
 
 
 .pull-left[
@@ -483,7 +475,7 @@ class: center, middle, inverse
 
 ---
 
-# Class imbalance and learning algorithms
+# #3 Class imbalance and learning algorithms
 
 - **Type**
 
@@ -504,7 +496,7 @@ class: center, middle, inverse
 ]
 ---
 
-# Training flow
+# #4 Training flow
 
 #### One model (and subset of data) per stage, trained independently
 
@@ -538,7 +530,7 @@ class: center, middle, inverse
 ]
 
 ---
-# Test
+# 5# Test
 
 `3.` **Test phase: final evaluation**:
   - 100 models trained on incremental train+dev subset&lt;sup&gt;*&lt;/sup&gt;
@@ -553,7 +545,7 @@ class: center, middle, inverse
 
 
 ---
-# Performance evaluation
+# #6 Performance evaluation
 - Learning curves analyses
 
   - more data Vs. more flexibility
@@ -566,28 +558,13 @@ class: center, middle, inverse
 
 
 ---
+class: center, middle, inverse
 # Limitation
 
-- Train, dev and test sets distributions are biased from the full  &lt;img src="images/logopedianet.png", width = "20%", align = "center"&gt;'s DB by the search string matching
+Train, dev and test sets distributions are biased from the full  &lt;img src="images/logopedianet.png", width = "20%", align = "center"&gt;'s DB by the search string matching
 
-- Direct application of the model to the full &lt;img src="images/logopedianet.png", width = "20%", align = "center"&gt; can behave unexpectedly on the search-string-complementary set
+Direct application of the model to the full &lt;img src="images/logopedianet.png", width = "20%", align = "center"&gt; can behave unexpectedly on the search-string-complementary set
 
----
-
-# Final consideration
-
-- Design/mutate/adapt the system to active learning
-
-- Performance exploration of RNN algorithm&lt;sup&gt;*&lt;/sup&gt;
-
-
-# .center[&lt;mark&gt;???METTO STA SEZIONE???&lt;/mark&gt;]
-
-.footnote[
-&lt;small&gt;&lt;small&gt;
-&lt;sup&gt;\*&lt;/sup&gt; Disclaimer: I have never implemented a RNN yet. 
-&lt;/small&gt;&lt;/small&gt;
-]
 ---
 class: center, middle, inverse
 &lt;br&gt;
