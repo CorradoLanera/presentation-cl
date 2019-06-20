@@ -79,22 +79,22 @@ class: inverse, middle
 A brief introduction to <img src="images/logopedianet.png", width = "20%", align = "center">
 
 Experiences at UBEPH on health-related free-text analyses
-  1. case detection of Varicella Zoster Virus infections in Italian children
-  1. extend systematic review searches from literature to registries
-  1. classification of pediatric emergency department discharging notes
+  1. Case detection of Varicella Zoster Virus infections in Italian children
+  1. Extend systematic review searches from literature to registries
+  1. Classification of pediatric emergency department discharging notes
 
 The otitis project
-  1. task
-  1. data
-  1. challenges
+  1. Task
+  1. Data
+  1. Challenges
 
 Machine learning strategy 
-  1. pre-processing
-  1. weights and features definition/selection
-  1. class imbalance and learning algorithms
-  1. training flow
-  1. test
-  1. performance evaluation
+  1. Pre-processing
+  1. Weights and features definition/selection
+  1. Class imbalance and learning algorithms
+  1. Training flow
+  1. Test
+  1. Performance evaluation
 
 ---
 background-image: url("images/pedianet.png")
