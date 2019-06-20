@@ -345,7 +345,7 @@ class: center, middle, inverse
 
 ---
 
-# #2 Data
+# #1 Data
 
 During 2018, <img src="images/logopedianet.png", width = "20%", align = "center"> team search the DB for AOM treatments.
 
