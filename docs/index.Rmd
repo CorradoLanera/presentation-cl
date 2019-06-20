@@ -77,7 +77,7 @@ class: inverse, middle
 
 # Outline
 
-- A brief history of PediaNET
+- A brief history of <img src="images/logopedianet.png", width = "20%", align = "center">
 
 - Experiences at UBEPH on health-related free-text analyses
   1. case detection of Varicella Zoster Virus infections in Italian children
@@ -89,21 +89,18 @@ class: inverse, middle
   1. data
   1. challenges
 
-- Machine learning strategy (draft)
-  1. global flow-chart
-  1. preprocessing
-  1. feature definition and weigths
-  1. class imbalance?
+- Machine learning strategy 
+  1. flow-chart
+  1. pre-processing
+  1. weights and features definition/selection
+  1. class imbalance and learning algorithms
   1. training flow
-
-- Discussion
 
 ---
 background-image: url("images/pedianet.png")
 background-position: bottom
 background-size: 90% 60%
-
-# PediaNET
+<img src="images/logopedianet.png", width = "40%", align = "center">
 
 A pediatric general practice research database
 
@@ -173,10 +170,10 @@ SOAP = subjective, objective, assessment, and plan
 class: middle, inverse
 
 # #1 insights 
-  - Sigle occurrence in a life-time (time-independent)
+  - Single occurrence in a life-time (time-independent)
   - Always test on unseen data in the training set
-  - Impact of the preprocessing (most impact from lowering and 2-gram)
-  - Value of boostrap-based learner
+  - Impact of the pre-processing (most impact from lowering and 2-gram)
+  - Value of bootstrap-based learner
 
 ---
 
@@ -185,7 +182,7 @@ class: middle, inverse
 **Assumption**:
 The validity of Systematic Reviews depends on the ability to fully capture the complete body of evidence through searches of many heterogeneous data sources.
 
-<small>_Baudard et al. (2017) “**Impact of Searching Clinical Trial Registries in Systematic Reviews of Pharmaceutical Treatments: Methodological Systematic Review and Reanalysis of Meta-Analyses.**” Bmj 356_</small>
+<small>_Baudard et al. (2017) “**Impact of Searching Clinical Trial Registries in Systematic Reviews of Pharmaceutical Treatments: Methodological Systematic Review and Reanalysis of Meta-Analyses.**” BMJ 356_</small>
 
 - Increase in the number of patients: **from 10% to 50%**
 - Change in summary statistics: **from 0% to 29%**
@@ -215,29 +212,29 @@ The validity of Systematic Reviews depends on the ability to fully capture the c
 
 **Learners**
   - GLMNet 
-  - SVM
-  - RF
-  - $k$-NN
+  - Support-Vector Machine ( SVM )
+  - Random Forests ( RF )
+  - $k$-Nearest Neighbor ( $k$-NN )
 
 ]
 
 .pull-right[
 **Strategies**<sup>2</sup>
 
-- Random Under Sampling
-- Random Over Sampling
+- Random Under Sampling ( RUS )
+- Random Over Sampling ( ROS )
 
 
 - 35:65 minority:majority ratio
 - 50:50 minority:majority ratio
 
 <small><small>
-  <sup>2</sup> Compared with the straight use of full dataset
+  <sup>2</sup> Compared with the straight use of full data-set
 </small></small>
 
 **Results**<sup>3</sup>
   - Improve: RUS-35:65, ROS-50:50
-  - Worsen: kNN (all strategies)
+  - Worsen: $k$-NN (all strategies)
   - Almost neutral: SVM
     - (RUS-50:50 worsened it)
     
@@ -246,7 +243,7 @@ The validity of Systematic Reviews depends on the ability to fully capture the c
 
   
 <small><small>
-<sup>3</sup> Based on $\Delta$AUC respect to the application on the full dataset w/out dealing with class imbalance
+<sup>3</sup> Based on $\Delta$AUC respect to the application on the full data-set w/out dealing with class imbalance
 </small></small>
 
 ---
@@ -307,7 +304,6 @@ layout: false
 </small></small>
 ]
 
-.pull-rigth[
 **Data**
   - 1789 ED visits with reported discharge diagnoses (Free-Text) from 9 Nicaraguan hospitals
   - Diagnoses were manually revised and classified by an independent
@@ -315,18 +311,18 @@ peer-review group of expert pediatricians
 
 **Learning strategy**
 - Bootstrap samples: distribution of results
-- Repeated CV: overfitting controll
-- OOB performance: full use of data
+- Repeated CV: over-fitting control
+- Out-Of-Bag ( OOB ) performance: full data used
 - RF: 500 trees each forest (to convergence)
 
 **Results**
 - overall accuracy: 0.7831 [0.7792-0.7965]
-]
+
 ---
 class: middle, inverse
 
 # Insights #3
-  - Lemmata (instead of stemming) improve results and interpretation
+  - Lemmata extraction (instead of stemming) improve results and interpretation
   - Value of a bootstrap superstructure
     - strong internal validation
     - data-driven, non-parametric confidence intervals
@@ -341,105 +337,275 @@ class: middle, inverse
 
 ---
 class: center, middle, inverse
-# Detection and Classification of Otitis from PediaNET free-text medical notes
+# Detection and Classification of Otitis from <img src="images/logopedianet.png", width = "40%", align = "center"> free-text medical notes
 
 ---
 
 # #1 Task
 
-> Detection of cases of otitis in children from free-text notes only.
-> Record level.
-
-> Classify patient records into the following hierarchies (only):
-  - not an otitis case (label = 0)
-  - otitis not media (label = 1)
-      - media not acute (label = 2)
-        - acute not recurrent and without perforation (label = 3)
-          - acute with perforation (label = 4)
-          - acute recurrent (label = 5)
+#### Classification of patients' records into the following six hierarchical classes:
+  - 0 = not an otitis case
+  - 1 = otitis case, not media
+      - 2 = otitis media (OM), not acute
+        - 3 = acute otitis media (AOM), not recurrent nor with perforation
+          - 4 = AOM with perforation
+          - 5 = AOM recurrent
           
 ### Notes:
-- label 4 and 5 can cohesists 
-- label 5 is time-dependent: three OMA events within 6 months, or 4+ OMA events in 12 months.
-- label 5: if the pediatrician explicitely reports that OMA is recurrent, the record has to be marked as well despite of the timing.
+- Label 4 and 5 can coexist 
+- Label 5 is time-dependent: three OMA events within 6 months, or 4+ OMA events in 12 months.
+- Label 5: if the pediatrician explicitly reports that OMA is recurrent, the record has to be marked as well despite of the timing.
 
 
 ---
 
 # #2 Data
 
-- records:
-- patients:
-- variables:
-- (language: italian)
+During 2018, <img src="images/logopedianet.png", width = "20%", align = "center"> team search the db for AOM treatments.
+
+They searched only from the "primary diagnosis" field:
+- ICD-9 codes
+- search string
+
+The primary limitation of the study was the impossibility of manually validate the cases, possibly including False Positive or detecting cases reported only in the "diary" field.
+
+For the current project, they have provided us an extraction of the db after the same search string filtering, on all diagnoses, sign-and-symptoms, and diaries free-text fields. Whatever excluded should be considered of label 0 (non-otitis)
+
+---
+# #2 Data
+
+.pull-left[
+- **Textual** variables:<sup>1</sup>
+  - diagnosis 1-3
+  - sign-and-symptoms 1-3
+  - diary 1-4
+  - prescription 1-8
+  - visit descriptions 1-8
+  - visit results 1-8
+
+- **Patients**: 4,475
+
+- **Records**:
+  - 297,373 overall (2004-2017)
+  - 4,928 train (2004-2007)
+  - 723 dev (2008-2017)
+  - 880 test (2008-2017)
+]
+.pull-right[
+- **Structured** variables:
+  - patient's id (by pediatrician)
+  - patient's gender
+  - patient's date of birth
+  - pediatrician id
+  - date and time of the visit
+  
+```{r, echo=FALSE}
+library(tidyverse, quietly = TRUE)
+gold_04_07 %>%
+  mutate(
+    class = factor(class, labels = c("not-otitis", "otitis", "OM", "OMA", "OMA-perf", "OME-rec"))
+  ) %>% 
+  ggplot(aes(class, fill = class)) +
+  geom_bar(show.legend = FALSE) +
+  ggtitle("Class distribution in the train data-set") +
+  geom_text(stat = 'count', aes(label = ..count..), vjust = -1)
+``` 
+]
+
+.footnote[<small><small><sup>1</sup> Italian language.</small></small>]
 
 ---
 
 # #3 Challenges
 
-- multi-label
-- multi-stage
-- time-dependant
-- multi-source
-- unbalanced
+- Multiple text-style (i.e., different pediatrics): tag? 
+
+- Patent cannot be identified across pediatricians
+
+- Possible multi-label classification: time-dependent, post-process layer?
+
+- Hierarchical models: multi-stage?
+
+- Data imbalance: all stages are possibly biased.
 
 
 
 ---
 class: center, middle, inverse
 
-# ML strategy (draft)
+# Machine learning strategy
 
 ---
 
 # Global flow-chart
 
----
-
-# Preprocessing
-- remove: extra white spaces, non-words, stop-words
-- merge: lowering, stemming/lammatization
-- augment: n-gram
+# .center[<mark>???BOIA IL FLOW-CHART???</mark>]
+# .center[<mark>???SAREBBE CARINO???</mark>]
+# .center[<mark>???LO AVREI ANCHE PROMESSO???</mark>]
+# .center[<mark>???METTO STA SEZIONE???</mark>]
 
 ---
 
-# Feature definition and weigths
-- enrich (NLP): tag, pos, sentiment, ...
-- TF-iDF
+# Pre-processing
+
+- **Removing**:
+  - extra white spaces
+  - non-words
+  - stop-words
+  
+- **Merging**:
+  - lowering
+  - lemmata extraction
+
 ---
 
-# Class imbalance?
+# Weights and features definition/selection
 
-- type: RUS/ROS
 
-- prop: 35:65, 50:50
+.pull-left[
+- **Features augmenting**
 
+  - n-gram $(n\in\{1,2\})$
+
+- **Features enrichment** (tags)<sup>*</sup>
+
+  - POS
+  - pediatrician id
+]
+.pull-right[
+- **Weighting strategy**
+
+  - TF-iDF
+  
+  
+- **Feature selection**
+
+  - based on the TF-iDF rank
+  - 80%-20% Pareto principle
+]
+
+<br>
+<br>
+- **Diagnoses attribution**
+  - discovered by augmentation and enrichment only?
+
+
+.footnote[
+<small><small>
+<sup>\*</sup> Disclaimer: I have **no** experience about tagging
+</small></small>
+]
+
+
+---
+
+# Class imbalance and learning algorithms
+
+- **Type**
+
+  - RUS 35:65 (first, because it's cheaper)
+  
+  - none
+  
+- **Learners**
+
+  - GLMNet (first, _benchmark_)
+  
+  - SVM 
+  
+  - RF<sup>*</sup>
+
+.footnote[
+<small><small><sup>*</sup>The `ntree` into forests will be always checked to guarantee the predictions are stable.</small></small>
+]
 ---
 
 # Training flow
 
-- classical: GLMNet, logistic, ...
-- full-data: SVM, CART, ...
-- boosted: RF, GBM, logitboost, ...
-- deep: CNN, RNN, ...
-- ensembled: SuperLearner
+#### One model (and subset of data) per stage, trained independently
 
-- stages: one, more
-- parameter selection: (repeated) CV, boostrap
-- learning curves: useful to select or switch to more complex model
-- validation: data from which distribution?
-- metric: sensitivity, NNP, AUC
+.pull-left[
+`1.` **Training phase: identification**
+  - 500 bootstrap superstructure
+     - test on OOBs
+  - parameter selection
+     - 10 x each hyper-par<sup>1</sup> 
+     - 5 rep of 10-fold cross-validation ( CV )
+  - best model selection
+  - further evaluations for 100 incremental train subsets<sup>2</sup>
+     - learning curve examination
+
+<small><small><sup>1</sup>Randomly chosen.</small></small><br>
+<small><small><sup>2</sup>Best model and hyper-par set only. CV excluded.</small></small>
+]
+.pull-right[
+`2.` **Dev phase: tailoring**<sup>2</sup> 
+  - bootstrap superstructure on the dev set
+     - test on OOBs
+  - parameter selection
+     - 10 x each hyper-par<sup>3</sup>
+     - 5 x 10-fold dev-CV<sup>4</sup>
+  - best hyper-pars
+  - further evaluation for 100 incremental dev subsets<sup>2</sup>
+     - learning curve examination 
+  
+<small><small><sup>3</sup>Nested around the phase-one best selection.</small></small><br>
+<small><small><sup>4</sup>Added to the full training set.</small></small>
+]
+
+---
+# Test
+
+`3.` **Test phase: final evaluation**:
+  - 100 models trained on incremental train+dev subset<sup>*</sup>
+  
+  - 500 bootstrap estimation on the test set each model
+  
+  - learning curve examination
+
+.footnote[
+<small><small><sup>*</sup>Best algorithm and hyper-par for the dev set.</small></small>
+]
 
 
 ---
-# (Production?)
+# Performance evaluation
+- Learning curves analyses
 
-- fixed model
-- active learning
+  - more data Vs more flexibility
+
+- Stage-chain performance analyses
+
+  - each stage from the second to the fourth will be compared to the performance obtained by the model on _its own gold test set_, i.e. the one consisting of the records corresponding to 100% correct previous stage prediction. 
+
+  - the $\Delta$ from _own-gold-_ to _chain-_ performances will be examined and reported for future improvement.
 
 
 ---
-class: center, middle
+# Limitation
+
+- Train, dev and test sets distributions are biased from the full  <img src="images/logopedianet.png", width = "20%", align = "center"> db by the search string matching
+
+- Direct application of the model to the full <img src="images/logopedianet.png", width = "20%", align = "center"> can behave unexpectedly on the search-string-complementary set
+
+---
+
+# Final consideration
+
+- Design/mutate/adapt the system to active learning
+
+- Performance exploration of RNN algorithm<sup>*</sup>
+
+
+# .center[<mark>???METTO STA SEZIONE???</mark>]
+
+.footnote[
+<small><small>
+<sup>\*</sup> Disclaimer: I have never implemented a RNN yet. 
+</small></small>
+]
+---
+class: center, middle, inverse
 <br>
 <br>
 <br>
@@ -451,12 +617,9 @@ class: center, middle
 <br>
 <br>
 
-# Thank you for your attention
+# <mark>Thank you</mark><br> for your attention
 
 
-<br>
-<br>
-<br>
 <br>
 <br>
 <br>
