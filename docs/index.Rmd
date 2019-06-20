@@ -281,7 +281,6 @@ background-size: 95% 90%
 <br>
 <br>
 <br>
-<br>
 <small><small>
 <sup>*</sup> L., Minto, Sharma, et.al _JCE_ (2018-103)
 </small></small>
