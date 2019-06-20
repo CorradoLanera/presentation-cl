@@ -21,6 +21,7 @@ background-size: contain
 
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
+load(here::here("..", "upenn.cl", "limpido", "data", "gold_04_07.rda"))
 ```
 
 # Machine Learning<br>for<br>Detection of Pediatric Otitis
@@ -596,7 +597,7 @@ class: center, middle, inverse
 <br>
 <br>
 
-# <mark>Thank you</mark><br> for your attention
+# Thank you<br> for your attention
 
 
 <br>
