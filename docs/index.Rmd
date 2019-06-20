@@ -418,15 +418,17 @@ gold_04_07 %>%
 
 # #3 Challenges
 
-- Multiple text-style (i.e., different pediatrics): tag? 
+- Patients cannot be identified across pediatricians
 
-- Patent cannot be identified across pediatricians
+- Multiple text-style (i.e., different pediatricians): tags? 
 
-- Possible multi-label classification: time-dependent, post-process layer?
+- Hierarchical models: sequential multi-stage?
 
-- Hierarchical models: multi-stage?
+- Possible multi-label classification: parallel independent stages?
 
-- Data imbalance: all stages are possibly biased.
+- Time-dependent classification: post-process layer?
+
+- All stages are possibly affected by data imbalance
 
 
 
