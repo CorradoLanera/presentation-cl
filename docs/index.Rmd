@@ -89,7 +89,7 @@ The otitis project
   1. Data
   1. Challenges
 
-Machine learning strategy 
+Machine learning strategy proposal
   1. Pre-processing
   1. Weights and features definition/selection
   1. Class imbalance and learning algorithms
@@ -317,7 +317,7 @@ peer-review group of expert pediatricians
 - RF: 500 trees each forest (to convergence)
 
 **Results**
-- Overall accuracy: 0.7831 [0.7792-0.7965]
+- Overall accuracy: 78.3% [77.9%-79.6%]
 
 ---
 class: middle, inverse
@@ -438,7 +438,7 @@ gold_04_07 %>%
 ---
 class: center, middle, inverse
 
-# Machine learning strategy
+# Machine learning strategy<br>proposal
 
 
 ---
