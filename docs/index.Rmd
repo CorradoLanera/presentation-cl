@@ -104,9 +104,9 @@ background-size: 90% 60%
 
 A pediatric general practice research database
 
-- Network of more then 450 family pediatricians distributed throughout Italy (120-130 providing data)
+- A network of more than 450 family pediatricians distributed throughout Italy (120-130 providing data)
 
-- Near 100,000 children followed by
+- Data about 100,000 children
 
 
 <!-- <img src="images/pedianet.png"> -->
@@ -170,7 +170,7 @@ SOAP = subjective, objective, assessment, and plan
 class: middle, inverse
 
 # #1 insights 
-  - Single occurrence in a life-time (time-independent)
+  - Single occurrence in a lifetime (time-independent)
   - Always test on unseen data in the training set
   - Impact of the pre-processing (most impact from lowering and 2-gram)
   - Value of bootstrap-based learner
@@ -288,7 +288,7 @@ class: middle, inverse
 
 # Insights #2
   - SVM could be the first choice for a fast and performing MLT
-  - RUS 35:65 can be effective to reduce time (and space) gaining AUC
+  - RUS 35:65 can be useful to reduce the time (and the space) gaining AUC
   - Class imbalance strategies drastically worsen $k$-NN models
 
 
@@ -326,7 +326,7 @@ class: middle, inverse
   - Value of a bootstrap superstructure
     - strong internal validation
     - data-driven, non-parametric confidence intervals
-    - complete use of all the labelled data at the disposal
+    - complete use of all the labeled data at the disposal
 
 
 
@@ -352,16 +352,16 @@ class: center, middle, inverse
           - 5 = AOM recurrent
           
 ### Notes:
-- Label 4 and 5 can coexist 
-- Label 5 is time-dependent: three OMA events within 6 months, or 4+ OMA events in 12 months.
-- Label 5: if the pediatrician explicitly reports that OMA is recurrent, the record has to be marked as well despite of the timing.
+- Label 4 and label 5 can coexist 
+- Label 5 is time-dependent: three OMA events within six months or 4+ OMA events in 12 months.
+- Label 5: if the pediatrician explicitly reports that OMA is recurrent, the record has to be marked as well despite the timing.
 
 
 ---
 
 # #2 Data
 
-During 2018, <img src="images/logopedianet.png", width = "20%", align = "center"> team search the db for AOM treatments.
+During 2018, <img src="images/logopedianet.png", width = "20%", align = "center"> team search the DB for AOM treatments.
 
 They searched only from the "primary diagnosis" field:
 - ICD-9 codes
@@ -369,7 +369,7 @@ They searched only from the "primary diagnosis" field:
 
 The primary limitation of the study was the impossibility of manually validate the cases, possibly including False Positive or detecting cases reported only in the "diary" field.
 
-For the current project, they have provided us an extraction of the db after the same search string filtering, on all diagnoses, sign-and-symptoms, and diaries free-text fields. Whatever excluded should be considered of label 0 (non-otitis)
+For the current project, they have provided us an extraction of the DB after the same search string filtering, on all diagnoses, sign-and-symptoms, and diaries free-text fields. Whatever excluded should be considered labeled 0 (non-otitis)
 
 ---
 # #2 Data
@@ -487,7 +487,7 @@ class: center, middle, inverse
 <br>
 <br>
 - **Diagnoses attribution**
-  - discovered by augmentation and enrichment only?
+  - could be it discovered by augmentation and enrichment only?
 
 
 .footnote[
@@ -572,11 +572,11 @@ class: center, middle, inverse
 # Performance evaluation
 - Learning curves analyses
 
-  - more data Vs more flexibility
+  - more data Vs. more flexibility
 
 - Stage-chain performance analyses
 
-  - each stage from the second to the fourth will be compared to the performance obtained by the model on _its own gold test set_, i.e. the one consisting of the records corresponding to 100% correct previous stage prediction. 
+  - for each stage from the second to the fourth, compare the performance obtained by the model on _its own gold test set_, i.e., the one consisting of the records corresponding to 100% correct previous stage prediction. 
 
   - the $\Delta$ from _own-gold-_ to _chain-_ performances will be examined and reported for future improvement.
 
@@ -584,7 +584,7 @@ class: center, middle, inverse
 ---
 # Limitation
 
-- Train, dev and test sets distributions are biased from the full  <img src="images/logopedianet.png", width = "20%", align = "center"> db by the search string matching
+- Train, dev and test sets distributions are biased from the full  <img src="images/logopedianet.png", width = "20%", align = "center">'s DB by the search string matching
 
 - Direct application of the model to the full <img src="images/logopedianet.png", width = "20%", align = "center"> can behave unexpectedly on the search-string-complementary set
 
